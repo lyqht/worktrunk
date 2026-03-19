@@ -13,7 +13,10 @@
             if (el.className && el.className.replace) {
                 el.className = el.className.replace(/\blanguage-\S*/g, '');
             }
-            if (el.dataset && el.dataset.lang) el.removeAttribute('data-lang');
+            if (el.dataset && el.dataset.lang) {
+                el.dataset.wtLang = el.dataset.lang;
+                el.removeAttribute('data-lang');
+            }
         }
         new MutationObserver(function(mutations) {
             for (var i = 0; i < mutations.length; i++) {

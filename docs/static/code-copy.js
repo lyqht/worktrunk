@@ -21,11 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
     button.addEventListener('click', function() {
       // Check if this is a bash/shell code block
       const codeEl = block.querySelector('code');
-      const isBash = codeEl && (
-        codeEl.dataset.lang === 'bash' ||
-        codeEl.dataset.lang === 'console' ||
-        /z-shell|z-bash/.test(codeEl.innerHTML)
-      );
+      const lang = codeEl && (codeEl.dataset.lang || codeEl.dataset.wtLang);
+      const isBash = lang === 'bash' || lang === 'console' ||
+        (codeEl && /z-shell|z-bash/.test(codeEl.innerHTML));
       const isTerminal = block.classList.contains('terminal');
       let text = block.textContent;
 
